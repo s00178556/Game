@@ -27,13 +27,45 @@ namespace CAExample
             allPlayers.Add(player4);
             allPlayers.Add(player5);
 
-            player1.IncreaseScore(1);
-            player2.IncreaseScore(10);
-
             Display(allPlayers);
 
-      
+            GetScores(allPlayers);
 
+            DisplayPlayerDetails(allPlayers);
+
+            //SORT THE LIST
+            allPlayers.Sort();
+            allPlayers.Reverse();
+            DisplayPlayerDetails(allPlayers);
+
+            Console.WriteLine($"The highest score is {Player.HighScore}");
+
+        }
+
+        private static void GetScores(List<Player> allPlayers)
+        {
+            //Loop asking for player number
+            Console.WriteLine("please enter a player number you want to add a score for");
+            string response = Console.ReadLine();
+            int playerNumber = int.Parse(response);
+
+            while (playerNumber != 0)
+            {
+
+                //determine player selected
+                Player selectedPlayer = allPlayers.ElementAt(playerNumber - 1);// using -1 as index starts at 0
+
+                //increase score for that player
+                selectedPlayer.IncreaseScore(1);
+
+                //display results
+                Display(allPlayers);
+
+                //ask for another player or 0 to quit
+                response = Console.ReadLine();
+                playerNumber = int.Parse(response);
+
+            }//end of while loop
         }
 
         //New method to display all the players
@@ -48,7 +80,22 @@ namespace CAExample
             {
                 Console.Write("{0, -10}", player.Score);
             }
+
+            //ADD A NEW LINE AT END SCORES
+            Console.WriteLine();
         }
+
+        //
+
+        private static void DisplayPlayerDetails(List<Player> players)
+        {
+            Console.WriteLine($"{"ID"}\t{"Name"}\t{"Score"}");
+            foreach (Player player in players)
+            {
+                Console.WriteLine(player);
+            }
+        }
+
 
     }
 }

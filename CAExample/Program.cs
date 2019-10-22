@@ -29,9 +29,26 @@ namespace CAExample
 
             player1.IncreaseScore(1);
             player2.IncreaseScore(10);
-            
 
+            Display(allPlayers);
+
+      
 
         }
+
+        //New method to display all the players
+
+        private static void Display(List<Player> players)
+        {
+            Console.WriteLine("{0, -10}{1, -10}{2, -10}{3, -10}{4, -10}", "Player 1", "Player 2", "Player 3", "Player 4", "Player 5");
+
+            //loop through all players in list and siaply score for each
+
+            foreach (Player player in players)
+            {
+                Console.Write("{0, -10}", player.Score);
+            }
+        }
+
     }
 }
